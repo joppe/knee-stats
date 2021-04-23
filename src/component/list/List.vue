@@ -1,46 +1,56 @@
+<template>
+    <table class="list">
+        <tr class="list__row--head">
+            <th
+                v-for="field in fields"
+                :key="field.prop"
+                class="list__cell list__cell--column"
+            >
+                {{ field.label }}
+            </th>
+        </tr>
+        <tr v-for="entry in data" :key="entry.id" class="list__row--body">
+            <td
+                v-for="field in fields"
+                :key="field.prop"
+                class="list__cell list__cell--row"
+            >
+                {{
+                    field.mapper
+                        ? field.mapper(entry[field.prop])
+                        : entry[field.prop]
+                }}
+            </td>
+        </tr>
+    </table>
+</template>
+
 <style lang="scss">
-table {
+.list {
     border-spacing: 0;
     width: 100%;
 
-    th,
-    td {
+    &__cell {
         padding: 3px 10px 3px 0;
-    }
 
-    thead {
-        th {
+        &--column {
             text-align: left;
             border-bottom: 1px solid #000;
         }
     }
 
-    tbody {
-        tr:nth-of-type(odd) {
+    &__row {
+        &--body:nth-of-type(odd) {
             background-color: #aaa;
+        }
+
+        &--body:hover {
+            background-color: $green--de-york;
+            cursor: pointer;
         }
     }
 }
 </style>
-
-<template>
-    <table>
-        <thead>
-            <tr>
-                <th v-for="field in fields" :key="field.prop">
-                    {{ field.label }}
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr v-for="entry in data" :key="entry.id">
-                <td v-for="field in fields" :key="field.prop">
-                    {{ entry[field.prop] }}
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</template>
 
 <script>
 export default {

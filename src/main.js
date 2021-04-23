@@ -1,4 +1,10 @@
 import { createApp } from 'vue';
-import App from './App.vue';
+import App from '@/App.vue';
+import { router } from '@/router/router';
+import { isReady } from '@/firebase/firebase';
 
-createApp(App).mount('#app');
+(async () => {
+    await isReady();
+
+    createApp(App).use(router).mount('#app');
+})();

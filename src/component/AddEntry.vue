@@ -69,7 +69,7 @@
 </style>
 
 <script>
-import FormRow from './form/FormRow';
+import FormRow from '@/component/form/FormRow';
 
 export default {
     name: 'AddEntry',

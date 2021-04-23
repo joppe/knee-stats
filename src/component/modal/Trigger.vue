@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import Modal from './Modal';
+import Modal from '@/component/modal/Modal';
 
 export default {
     name: 'Trigger',
