@@ -22,6 +22,7 @@
         <List
             :fields="fields"
             :data="entries"
+            :styler="styler"
             @selected="handleSelected($event)"
         />
 
@@ -124,11 +125,18 @@ export default {
 
             this.selected = null;
         },
+        styler(entry) {
+            return entry.id ? 'with-id' : 'no-id';
+        },
     },
 };
 </script>
 
 <style lang="scss">
+.no-id {
+    color: $yellow--koromiko;
+}
+
 .date-nav {
     display: flex;
     align-items: center;
