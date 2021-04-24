@@ -24,6 +24,25 @@
     <router-view></router-view>
 </template>
 
+<script>
+import { useAuth } from '@/firebase/useAuth';
+
+export default {
+    name: 'App',
+    setup() {
+        const { isLoggedIn, logout } = useAuth();
+
+        return { isLoggedIn, logout };
+    },
+    methods: {
+        async handleLogout() {
+            await this.logout();
+            this.$router.push({ name: 'Login' });
+        },
+    },
+};
+</script>
+
 <style lang="scss">
 .main-nav {
     &__list {
@@ -56,22 +75,3 @@
     }
 }
 </style>
-
-<script>
-import { useAuth } from '@/firebase/useAuth';
-
-export default {
-    name: 'App',
-    setup() {
-        const { isLoggedIn, logout } = useAuth();
-
-        return { isLoggedIn, logout };
-    },
-    methods: {
-        async handleLogout() {
-            await this.logout();
-            this.$router.push({ name: 'Login' });
-        },
-    },
-};
-</script>

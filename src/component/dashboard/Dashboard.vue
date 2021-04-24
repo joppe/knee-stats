@@ -23,24 +23,6 @@
     </main>
 </template>
 
-<style lang="scss">
-.date-nav {
-    display: flex;
-    align-items: center;
-    margin-bottom: map-get($spacing, 'lg');
-
-    &__item {
-        &--previous {
-            margin-right: map-get($spacing, 'md');
-        }
-
-        &--next {
-            margin-left: map-get($spacing, 'md');
-        }
-    }
-}
-</style>
-
 <script>
 import { useStats } from '@/firebase/useStats';
 import { useEntries } from '@/composition/useEntries';
@@ -106,3 +88,21 @@ export default {
     },
 };
 </script>
+
+<style lang="scss">
+.date-nav {
+    display: flex;
+    align-items: center;
+    margin-bottom: map-get($spacing, 'lg');
+
+    &__item {
+        &--previous {
+            margin-right: map-get($spacing, 'md');
+        }
+
+        &--next {
+            margin-left: map-get($spacing, 'md');
+        }
+    }
+}
+</style>

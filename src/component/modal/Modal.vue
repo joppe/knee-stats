@@ -16,6 +16,21 @@
     </div>
 </template>
 
+<script>
+export default {
+    name: 'Modal',
+    props: {
+        title: String,
+    },
+    emits: ['close'],
+    methods: {
+        close() {
+            this.$emit('close');
+        },
+    },
+};
+</script>
+
 <style lang="scss">
 $space: 10px;
 
@@ -59,18 +74,3 @@ $space: 10px;
     }
 }
 </style>
-
-<script>
-export default {
-    name: 'Modal',
-    props: {
-        title: String,
-    },
-    emits: ['close'],
-    methods: {
-        close() {
-            this.$emit('close');
-        },
-    },
-};
-</script>

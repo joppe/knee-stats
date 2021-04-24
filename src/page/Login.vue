@@ -26,13 +26,6 @@
     </div>
 </template>
 
-<style lang="scss">
-.login {
-    max-width: 400px;
-    border: 1px solid $black;
-}
-</style>
-
 <script>
 import Form from '@/component/form/Form';
 import FormRow from '@/component/form/FormRow';
@@ -69,3 +62,10 @@ export default {
     },
 };
 </script>
+
+<style lang="scss">
+.login {
+    max-width: 400px;
+    border: 1px solid $black;
+}
+</style>
