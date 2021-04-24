@@ -55,19 +55,6 @@
     </form>
 </template>
 
-<style lang="scss">
-.form {
-    &__actions {
-        display: flex;
-        justify-content: flex-end;
-    }
-
-    &__action {
-        margin-left: 20px;
-    }
-}
-</style>
-
 <script>
 import FormRow from '@/component/form/FormRow';
 
@@ -119,3 +106,16 @@ export default {
     },
 };
 </script>
+
+<style lang="scss">
+.form {
+    &__actions {
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    &__action {
+        margin-left: 20px;
+    }
+}
+</style>

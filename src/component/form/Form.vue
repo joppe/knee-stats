@@ -8,6 +8,12 @@
     </form>
 </template>
 
+<script>
+export default {
+    name: 'Form',
+};
+</script>
+
 <style lang="scss">
 .form {
     padding: map-get($spacing, 'md');
@@ -18,9 +24,3 @@
     }
 }
 </style>
-
-<script>
-export default {
-    name: 'Form',
-};
-</script>

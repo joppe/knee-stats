@@ -5,6 +5,16 @@
     </div>
 </template>
 
+<script>
+export default {
+    name: 'FormRow',
+    props: {
+        id: String,
+        label: String,
+    },
+};
+</script>
+
 <style lang="scss">
 .form-row {
     display: flex;
@@ -16,13 +26,3 @@
     }
 }
 </style>
-
-<script>
-export default {
-    name: 'FormRow',
-    props: {
-        id: String,
-        label: String,
-    },
-};
-</script>

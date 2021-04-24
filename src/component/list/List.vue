@@ -25,6 +25,16 @@
     </table>
 </template>
 
+<script>
+export default {
+    name: 'List',
+    props: {
+        fields: [Object],
+        data: [Object],
+    },
+};
+</script>
+
 <style lang="scss">
 .list {
     border-spacing: 0;
@@ -51,13 +61,3 @@
     }
 }
 </style>
-
-<script>
-export default {
-    name: 'List',
-    props: {
-        fields: [Object],
-        data: [Object],
-    },
-};
-</script>
