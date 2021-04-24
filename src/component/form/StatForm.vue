@@ -39,6 +39,8 @@
             <FormRow id="form-field-remark" label="Remark">
                 <textarea id="form-field-remark" v-model="remark" />
             </FormRow>
+
+            <ExerciseForm v-model:exercise="exercise" />
         </template>
 
         <template v-slot:actions>
@@ -52,6 +54,7 @@
 import Form from '@/component/form/Form';
 import FormRow from '@/component/form/FormRow';
 import RangeField from '@/component/form/field/RangeField';
+import ExerciseForm from '@/component/form/ExerciseForm';
 import { fromString } from '@/date/fromString';
 import { fromTimestamp } from '@/date/fromTimestamp';
 import { toString } from '@/date/toString';
@@ -67,6 +70,7 @@ export default {
         },
     },
     components: {
+        ExerciseForm,
         Form,
         FormRow,
         RangeField,
@@ -78,7 +82,7 @@ export default {
             date: toString(date),
             score: this.stat.score,
             stairs: this.stat.stairs,
-            exercise: [],
+            exercise: this.stat.exercise ? this.stat.exercise.slice() : [],
             muscleStrain: this.stat.muscleStrain,
             remark: this.stat.remark,
         };
