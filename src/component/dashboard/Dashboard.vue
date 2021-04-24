@@ -133,10 +133,6 @@ export default {
 </script>
 
 <style lang="scss">
-.no-id {
-    color: $yellow--koromiko;
-}
-
 .date-nav {
     display: flex;
     align-items: center;
