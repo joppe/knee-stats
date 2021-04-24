@@ -5,33 +5,30 @@
                 <input type="date" id="form-field-date" v-model="date" />
             </FormRow>
             <FormRow id="form-field-score" label="Sore">
-                <input
-                    type="range"
+                <RangeField
+                    id="form-field-score"
                     min="0"
                     max="10"
                     step="1"
-                    id="form-field-score"
-                    v-model="score"
+                    v-model:value="score"
                 />
             </FormRow>
             <FormRow id="form-field-stairs" label="Stairs">
-                <input
-                    type="range"
+                <RangeField
+                    id="form-field-stairs"
                     min="0"
                     max="10"
                     step="1"
-                    id="form-field-stairs"
-                    v-model="stairs"
+                    v-model:value="stairs"
                 />
             </FormRow>
             <FormRow id="form-field-muscle-strain" label="Muscle strain">
-                <input
-                    type="range"
+                <RangeField
+                    id="form-field-muscle-strain"
                     min="0"
                     max="10"
                     step="1"
-                    id="form-field-muscle-strain"
-                    v-model="muscleStrain"
+                    v-model:value="muscleStrain"
                 />
             </FormRow>
             <FormRow id="form-field-remark" label="Remark">
@@ -49,6 +46,7 @@
 <script>
 import Form from '@/component/form/Form';
 import FormRow from '@/component/form/FormRow';
+import RangeField from '@/component/form/field/RangeField';
 import { fromString } from '@/date/fromString';
 import { fromTimestamp } from '@/date/fromTimestamp';
 import { toString } from '@/date/toString';
@@ -66,6 +64,7 @@ export default {
     components: {
         Form,
         FormRow,
+        RangeField,
     },
     data() {
         const date = fromTimestamp(this.stat.date.seconds);
