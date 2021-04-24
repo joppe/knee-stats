@@ -12,7 +12,7 @@
         <tr
             v-for="entry in data"
             :key="entry.id"
-            class="list__row--body"
+            :class="className(entry)"
             @click="$emit('selected', entry)"
         >
             <td
@@ -36,8 +36,14 @@ export default {
     props: {
         fields: [Object],
         data: [Object],
+        styler: Function,
     },
     emits: ['selected'],
+    methods: {
+        className(entry) {
+            return `list__row--body  ${this.styler(entry)}`;
+        },
+    },
 };
 </script>
 
@@ -47,7 +53,7 @@ export default {
     width: 100%;
 
     &__cell {
-        padding: 3px 10px 3px 0;
+        padding: map-get($spacing, 'md');
 
         &--column {
             text-align: left;
