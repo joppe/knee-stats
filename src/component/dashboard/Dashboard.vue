@@ -19,20 +19,34 @@
             </button>
         </div>
 
-        <List :fields="fields" :data="entries" />
+        <List
+            :fields="fields"
+            :data="entries"
+            @selected="handleSelected($event)"
+        />
+
+        <Modal v-if="selected !== null" @close="selected = null">
+            <StatForm
+                :stat="selected"
+                @cancel="selected = null"
+                @save="handleSave($event)"
+            />
+        </Modal>
     </main>
 </template>
 
 <script>
-import { useStats } from '@/firebase/useStats';
-import { useEntries } from '@/composition/useEntries';
 import List from '@/component/list/List';
-import { toString } from '@/date/toString';
-import { fromTimestamp } from '@/date/fromTimestamp';
-import { fromString } from '@/date/fromString';
+import Modal from '@/component/modal/Modal';
+import StatForm from '@/component/form/StatForm';
 import { addDays } from '@/date/addDays';
+import { fromString } from '@/date/fromString';
+import { fromTimestamp } from '@/date/fromTimestamp';
 import { toRefs } from 'vue';
+import { toString } from '@/date/toString';
 import { useDayInterval } from '@/composition/useDayInterval';
+import { useEntries } from '@/composition/useEntries';
+import { createStat, updateStat, useStats } from '@/firebase/useStats';
 
 export default {
     name: 'Dashboard',
@@ -42,8 +56,14 @@ export default {
             required: true,
         },
     },
+    components: {
+        List,
+        Modal,
+        StatForm,
+    },
     data() {
         return {
+            selected: null,
             fields: [
                 {
                     prop: 'date',
@@ -56,9 +76,6 @@ export default {
                 { prop: 'stairs', label: 'Stairs' },
             ],
         };
-    },
-    components: {
-        List,
     },
     setup(props) {
         const { startDate } = toRefs(props);
@@ -84,6 +101,20 @@ export default {
             this.$router.push({
                 path: `/period/${toString(next)}`,
             });
+        },
+        handleSelected(stat) {
+            this.selected = stat;
+        },
+        handleSave(stat) {
+            const { id, ...rest } = stat;
+
+            if (id) {
+                updateStat(id, rest);
+            } else {
+                createStat(rest);
+            }
+
+            this.selected = null;
         },
     },
 };
