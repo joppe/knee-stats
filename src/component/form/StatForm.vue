@@ -1,5 +1,5 @@
 <template>
-    <Form>
+    <Form class="stat-form">
         <template v-slot:fields>
             <FormRow id="form-field-date" label="Date">
                 <input
@@ -44,8 +44,12 @@
         </template>
 
         <template v-slot:actions>
-            <button type="button" @click="save()">save</button>
-            <button type="button" @click="cancel()">cancel</button>
+            <button type="button" @click="save()" class="stat-form__button">
+                save
+            </button>
+            <button type="button" @click="cancel()" class="stat-form__button">
+                cancel
+            </button>
         </template>
     </Form>
 </template>
@@ -110,3 +114,11 @@ export default {
     },
 };
 </script>
+
+<style lang="scss">
+.stat-form {
+    &__button {
+        margin-left: map-get($spacing, 'md');
+    }
+}
+</style>
