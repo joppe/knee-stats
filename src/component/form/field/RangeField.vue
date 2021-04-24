@@ -33,7 +33,7 @@ export default {
     methods: {
         update(value) {
             this.val = value;
-            this.$emit('update:value', value);
+            this.$emit('update:value', parseInt(value, 10));
         },
     },
 };

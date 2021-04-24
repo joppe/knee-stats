@@ -93,10 +93,10 @@ export default {
                     seconds: toTimestamp(date),
                     nanoseconds: 0,
                 },
-                score: parseInt(this.score, 10),
-                stairs: parseInt(this.stairs, 10),
+                score: this.score,
+                stairs: this.stairs,
                 exercise: this.exercise,
-                muscleStrain: parseInt(this.muscleStrain, 10),
+                muscleStrain: this.muscleStrain,
                 remark: this.remark,
             });
         },
