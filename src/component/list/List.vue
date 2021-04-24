@@ -9,7 +9,12 @@
                 {{ field.label }}
             </th>
         </tr>
-        <tr v-for="entry in data" :key="entry.id" class="list__row--body">
+        <tr
+            v-for="entry in data"
+            :key="entry.id"
+            class="list__row--body"
+            @click="$emit('selected', entry)"
+        >
             <td
                 v-for="field in fields"
                 :key="field.prop"
@@ -32,6 +37,7 @@ export default {
         fields: [Object],
         data: [Object],
     },
+    emits: ['selected'],
 };
 </script>
 

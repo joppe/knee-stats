@@ -1,17 +1,17 @@
 import { db } from '@/firebase/firebase';
 import { ref, onUnmounted } from 'vue';
 
-const collection = db.collection('entries');
+const collection = db.collection('stats');
 
-export function addEntry(entry) {
+export function createStat(entry) {
     return collection.add(entry);
 }
 
-export function updateEntry(id, entry) {
+export function updateStat(id, entry) {
     return collection.doc(id).update(entry);
 }
 
-export function deleteEntry(id) {
+export function deleteStat(id) {
     return collection.doc(id).delete();
 }
 
