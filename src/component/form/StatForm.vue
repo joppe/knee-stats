@@ -2,32 +2,37 @@
     <Form>
         <template v-slot:fields>
             <FormRow id="form-field-date" label="Date">
-                <input type="date" id="form-field-date" v-model="date" />
+                <input
+                    type="date"
+                    id="form-field-date"
+                    v-model="date"
+                    disabled
+                />
             </FormRow>
             <FormRow id="form-field-score" label="Sore">
                 <RangeField
                     id="form-field-score"
-                    min="0"
-                    max="10"
-                    step="1"
+                    :min="0"
+                    :max="10"
+                    :step="1"
                     v-model:value="score"
                 />
             </FormRow>
             <FormRow id="form-field-stairs" label="Stairs">
                 <RangeField
                     id="form-field-stairs"
-                    min="0"
-                    max="10"
-                    step="1"
+                    :min="0"
+                    :max="10"
+                    :step="1"
                     v-model:value="stairs"
                 />
             </FormRow>
             <FormRow id="form-field-muscle-strain" label="Muscle strain">
                 <RangeField
                     id="form-field-muscle-strain"
-                    min="0"
-                    max="10"
-                    step="1"
+                    :min="0"
+                    :max="10"
+                    :step="1"
                     v-model:value="muscleStrain"
                 />
             </FormRow>
