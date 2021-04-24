@@ -40,13 +40,15 @@ import List from '@/component/list/List';
 import Modal from '@/component/modal/Modal';
 import StatForm from '@/component/form/StatForm';
 import { addDays } from '@/date/addDays';
+import { createStat, updateStat, useStats } from '@/firebase/useStats';
 import { fromString } from '@/date/fromString';
 import { fromTimestamp } from '@/date/fromTimestamp';
+import { startOfDay } from '@/date/startOfDay';
 import { toRefs } from 'vue';
 import { toString } from '@/date/toString';
+import { toTimestamp } from '@/date/toTimestamp';
 import { useDayInterval } from '@/composition/useDayInterval';
 import { useEntries } from '@/composition/useEntries';
-import { createStat, updateStat, useStats } from '@/firebase/useStats';
 
 export default {
     name: 'Dashboard',
@@ -62,7 +64,11 @@ export default {
         StatForm,
     },
     data() {
+        const today = startOfDay(new Date());
+        const tomorrow = addDays(today, 1);
+
         return {
+            tomorrow: toTimestamp(tomorrow),
             selected: null,
             fields: [
                 {
@@ -103,7 +109,9 @@ export default {
             });
         },
         handleSelected(stat) {
-            this.selected = stat;
+            if (stat.date.seconds < this.tomorrow) {
+                this.selected = stat;
+            }
         },
         handleSave(stat) {
             const { id, ...rest } = stat;
