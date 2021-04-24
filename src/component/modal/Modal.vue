@@ -64,6 +64,7 @@ $space: 10px;
         bottom: $space;
         left: $space;
         padding: 20px;
+        overflow: auto;
         background-color: #fff;
     }
 
