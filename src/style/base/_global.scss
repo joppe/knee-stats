@@ -67,5 +67,6 @@ button {
 }
 
 textarea {
+    padding: map-get($spacing, 'md');
     height: 150px;
 }

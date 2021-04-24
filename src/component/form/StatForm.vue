@@ -2,38 +2,45 @@
     <Form>
         <template v-slot:fields>
             <FormRow id="form-field-date" label="Date">
-                <input type="date" id="form-field-date" v-model="date" />
+                <input
+                    type="date"
+                    id="form-field-date"
+                    v-model="date"
+                    disabled
+                />
             </FormRow>
             <FormRow id="form-field-score" label="Sore">
                 <RangeField
                     id="form-field-score"
-                    min="0"
-                    max="10"
-                    step="1"
+                    :min="0"
+                    :max="10"
+                    :step="1"
                     v-model:value="score"
                 />
             </FormRow>
             <FormRow id="form-field-stairs" label="Stairs">
                 <RangeField
                     id="form-field-stairs"
-                    min="0"
-                    max="10"
-                    step="1"
+                    :min="0"
+                    :max="10"
+                    :step="1"
                     v-model:value="stairs"
                 />
             </FormRow>
             <FormRow id="form-field-muscle-strain" label="Muscle strain">
                 <RangeField
                     id="form-field-muscle-strain"
-                    min="0"
-                    max="10"
-                    step="1"
+                    :min="0"
+                    :max="10"
+                    :step="1"
                     v-model:value="muscleStrain"
                 />
             </FormRow>
             <FormRow id="form-field-remark" label="Remark">
                 <textarea id="form-field-remark" v-model="remark" />
             </FormRow>
+
+            <ExerciseForm v-model:exercise="exercise" />
         </template>
 
         <template v-slot:actions>
@@ -47,6 +54,7 @@
 import Form from '@/component/form/Form';
 import FormRow from '@/component/form/FormRow';
 import RangeField from '@/component/form/field/RangeField';
+import ExerciseForm from '@/component/form/ExerciseForm';
 import { fromString } from '@/date/fromString';
 import { fromTimestamp } from '@/date/fromTimestamp';
 import { toString } from '@/date/toString';
@@ -62,6 +70,7 @@ export default {
         },
     },
     components: {
+        ExerciseForm,
         Form,
         FormRow,
         RangeField,
@@ -73,7 +82,7 @@ export default {
             date: toString(date),
             score: this.stat.score,
             stairs: this.stat.stairs,
-            exercise: [],
+            exercise: this.stat.exercise ? this.stat.exercise.slice() : [],
             muscleStrain: this.stat.muscleStrain,
             remark: this.stat.remark,
         };
@@ -88,10 +97,10 @@ export default {
                     seconds: toTimestamp(date),
                     nanoseconds: 0,
                 },
-                score: parseInt(this.score, 10),
-                stairs: parseInt(this.stairs, 10),
+                score: this.score,
+                stairs: this.stairs,
                 exercise: this.exercise,
-                muscleStrain: parseInt(this.muscleStrain, 10),
+                muscleStrain: this.muscleStrain,
                 remark: this.remark,
             });
         },
