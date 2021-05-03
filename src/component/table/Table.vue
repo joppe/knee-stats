@@ -1,5 +1,5 @@
 <template>
-    <table class="table">
+    <table class="c-table table">
         <tr class="table__row--head">
             <th
                 v-for="field in fields"
@@ -62,11 +62,15 @@ export default {
     }
 
     &__row {
-        &--body:nth-of-type(odd) {
+        &--body.current {
+            background-color: $blue--maya;
+        }
+
+        &--body:nth-of-type(odd):not(.active) {
             background-color: #aaa;
         }
 
-        &--body:hover {
+        &--body:hover:not(.disabled) {
             background-color: $green--de-york;
             cursor: pointer;
         }

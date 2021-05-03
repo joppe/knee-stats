@@ -69,6 +69,7 @@ export default {
         const tomorrow = addDays(today, 1);
 
         return {
+            today: toTimestamp(today),
             tomorrow: toTimestamp(tomorrow),
             selected: null,
             fields: [
@@ -126,7 +127,21 @@ export default {
             this.selected = null;
         },
         styler(entry) {
-            return entry.id ? 'with-id' : 'no-id';
+            const classes = [];
+
+            if (entry.id) {
+                classes.push('with-id');
+            } else {
+                classes.push('no-id');
+            }
+
+            if (entry.date.seconds === this.today) {
+                classes.push('current');
+            } else if (entry.date.seconds > this.today) {
+                classes.push('disabled');
+            }
+
+            return classes.join('  ');
         },
     },
 };
