@@ -46,7 +46,7 @@ import { fromString } from '@/date/fromString';
 import { fromTimestamp } from '@/date/fromTimestamp';
 import { startOfDay } from '@/date/startOfDay';
 import { toRefs } from 'vue';
-import { toString } from '@/date/toString';
+import { NATURAL, toString } from '@/date/toString';
 import { toTimestamp } from '@/date/toTimestamp';
 import { useDayInterval } from '@/composition/useDayInterval';
 import { useEntries } from '@/composition/useEntries';
@@ -77,7 +77,7 @@ export default {
                     prop: 'date',
                     label: 'Date',
                     mapper(date) {
-                        return toString(fromTimestamp(date.seconds));
+                        return toString(fromTimestamp(date.seconds), NATURAL);
                     },
                 },
                 { prop: 'score', label: 'Score' },
