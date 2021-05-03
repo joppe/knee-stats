@@ -2,21 +2,21 @@
     <div class="o-container">
         <Form class="login">
             <template v-slot:fields>
-                <FormRow id="form-field-username" label="Username">
+                <FormField id="form-field-username" label="Username">
                     <input
                         type="text"
                         id="form-field-username"
                         v-model="username"
                         autocomplete
                     />
-                </FormRow>
-                <FormRow id="form-field-password" label="Password">
+                </FormField>
+                <FormField id="form-field-password" label="Password">
                     <input
                         type="password"
                         id="form-field-password"
                         v-model="password"
                     />
-                </FormRow>
+                </FormField>
             </template>
 
             <template v-slot:actions>
@@ -28,14 +28,14 @@
 
 <script>
 import Form from '@/component/form/Form';
-import FormRow from '@/component/form/FormRow';
+import FormField from '@/component/form/FormField';
 import { useAuth } from '@/firebase/useAuth';
 
 export default {
     name: 'Login',
     components: {
         Form,
-        FormRow,
+        FormField,
     },
     setup() {
         const { user, login } = useAuth();

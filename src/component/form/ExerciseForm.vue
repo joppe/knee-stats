@@ -24,60 +24,63 @@
             +
         </button>
 
-        <form class="exercise__form" v-if="showForm">
-            <div class="exercise__form__field">
-                <label for="form-field-type" class="exercise__form__label"
-                    >Type</label
-                >
-                <select
-                    id="form-field-type"
-                    v-model="type"
-                    class="exercise__form__select"
-                >
-                    <option v-for="t in types" :key="t.name" :value="t.name">
-                        {{ t.label }}
-                    </option>
-                </select>
-            </div>
-            <div class="exercise__form__field exercise__form__field--small">
-                <label for="form-field-sets" class="exercise__form__label"
-                    >Sets</label
-                >
-                <input
-                    id="form-field-sets"
-                    type="number"
-                    v-model.number="sets"
-                    class="exercise__form__input"
-                    @focus="handleFocus($event)"
-                />
-            </div>
-            <div class="exercise__form__field exercise__form__field--small">
-                <label
-                    for="form-field-repetitions"
-                    class="exercise__form__label"
-                    >Reps</label
-                >
-                <input
+        <Form is-inline v-if="showForm">
+            <template v-slot:fields>
+                <FormField id="form-field-type" label="Type" is-inline>
+                    <select
+                        id="form-field-type"
+                        v-model="type"
+                        class="exercise__form__select"
+                    >
+                        <option
+                            v-for="t in types"
+                            :key="t.name"
+                            :value="t.name"
+                        >
+                            {{ t.label }}
+                        </option>
+                    </select>
+                </FormField>
+                <FormField id="form-field-sets" label="Sets" is-inline is-small>
+                    <input
+                        id="form-field-sets"
+                        type="number"
+                        v-model.number="sets"
+                        class="exercise__form__input"
+                        @focus="handleFocus($event)"
+                    />
+                </FormField>
+                <FormField
                     id="form-field-repetitions"
-                    type="number"
-                    v-model.number="repetitions"
-                    class="exercise__form__input"
-                    @focus="handleFocus($event)"
-                />
-            </div>
-            <div class="exercise__form__field exercise__form__field--small">
-                <label for="form-field-weight" class="exercise__form__label"
-                    >Weight</label
+                    label="Reps"
+                    is-inline
+                    is-small
                 >
-                <input
+                    <input
+                        id="form-field-repetitions"
+                        type="number"
+                        v-model.number="repetitions"
+                        class="exercise__form__input"
+                        @focus="handleFocus($event)"
+                    />
+                </FormField>
+                <FormField
                     id="form-field-weight"
-                    type="number"
-                    v-model.number="weight"
-                    class="exercise__form__input"
-                    @focus="handleFocus($event)"
-                />
-            </div>
-            <div class="exercise__form__actions">
+                    label="Weight"
+                    is-inline
+                    is-small
+                >
+                    <input
+                        id="form-field-weight"
+                        type="number"
+                        v-model.number="weight"
+                        class="exercise__form__input"
+                        @focus="handleFocus($event)"
+                    />
+                </FormField>
+            </template>
+
+            <template v-slot:actions>
                 <button
                     type="button"
                     @click="add()"
@@ -92,12 +95,15 @@
                 >
                     cancel
                 </button>
-            </div>
-        </form>
+            </template>
+        </Form>
     </div>
 </template>
 
 <script>
+import Form from './Form';
+import FormField from './FormField';
+
 export default {
     name: 'ExerciseForm',
     emits: ['update:exercise'],
@@ -105,6 +111,10 @@ export default {
         exercise: {
             type: Array,
         },
+    },
+    components: {
+        Form,
+        FormField,
     },
     data() {
         return {
@@ -189,32 +199,12 @@ export default {
     }
 
     &__form {
-        display: flex;
-
-        &__field {
-            width: 150px;
-            margin-right: map-get($spacing, 'md');
-
-            &--small {
-                width: 50px;
-            }
-        }
-
-        &__label {
-            font-size: map-get($font-size, 'sm');
-            color: $grey--dark-gray;
-        }
-
         &__input {
             width: 100%;
         }
 
         &__select {
             width: 100%;
-        }
-
-        &__actions {
-            display: flex;
         }
 
         &__button {

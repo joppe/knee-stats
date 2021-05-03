@@ -1,15 +1,15 @@
 <template>
     <Form class="stat-form">
         <template v-slot:fields>
-            <FormRow id="form-field-date" label="Date">
+            <FormField id="form-field-date" label="Date">
                 <input
                     type="date"
                     id="form-field-date"
                     v-model="date"
                     disabled
                 />
-            </FormRow>
-            <FormRow id="form-field-score" label="Sore">
+            </FormField>
+            <FormField id="form-field-score" label="Sore">
                 <RangeField
                     id="form-field-score"
                     :min="0"
@@ -17,8 +17,8 @@
                     :step="1"
                     v-model:value="score"
                 />
-            </FormRow>
-            <FormRow id="form-field-stairs" label="Stairs">
+            </FormField>
+            <FormField id="form-field-stairs" label="Stairs">
                 <RangeField
                     id="form-field-stairs"
                     :min="0"
@@ -26,8 +26,8 @@
                     :step="1"
                     v-model:value="stairs"
                 />
-            </FormRow>
-            <FormRow id="form-field-muscle-strain" label="Muscle strain">
+            </FormField>
+            <FormField id="form-field-muscle-strain" label="Muscle strain">
                 <RangeField
                     id="form-field-muscle-strain"
                     :min="0"
@@ -35,10 +35,10 @@
                     :step="1"
                     v-model:value="muscleStrain"
                 />
-            </FormRow>
-            <FormRow id="form-field-remark" label="Remark">
+            </FormField>
+            <FormField id="form-field-remark" label="Remark">
                 <textarea id="form-field-remark" v-model="remark" />
-            </FormRow>
+            </FormField>
 
             <ExerciseForm v-model:exercise="exercise" />
         </template>
@@ -56,7 +56,7 @@
 
 <script>
 import Form from '@/component/form/Form';
-import FormRow from '@/component/form/FormRow';
+import FormField from '@/component/form/FormField';
 import RangeField from '@/component/form/field/RangeField';
 import ExerciseForm from '@/component/form/ExerciseForm';
 import { fromString } from '@/date/fromString';
@@ -76,7 +76,7 @@ export default {
     components: {
         ExerciseForm,
         Form,
-        FormRow,
+        FormField,
         RangeField,
     },
     data() {
