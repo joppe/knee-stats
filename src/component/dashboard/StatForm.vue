@@ -40,6 +40,8 @@
                 />
             </FormField>
 
+            <ActivityForm v-model:activities="activities" />
+
             <ExerciseForm v-model:exercises="exercises" />
 
             <FormField id="form-field-remark" label="Remark">
@@ -62,6 +64,7 @@
 import Form from '@/component/form/Form';
 import FormField from '@/component/form/FormField';
 import RangeField from '@/component/form/field/RangeField';
+import ActivityForm from '@/component/dashboard/ActivityForm';
 import ExerciseForm from '@/component/dashboard/ExerciseForm';
 import { fromString } from '@/date/fromString';
 import { fromTimestamp } from '@/date/fromTimestamp';
@@ -78,6 +81,7 @@ export default {
         },
     },
     components: {
+        ActivityForm,
         ExerciseForm,
         Form,
         FormField,
@@ -91,6 +95,9 @@ export default {
             score: this.stat.score,
             stairs: this.stat.stairs,
             exercises: this.stat.exercises ? this.stat.exercises.slice() : [],
+            activities: this.stat.activities
+                ? this.stat.activities.slice()
+                : [],
             muscleStrain: this.stat.muscleStrain,
             remark: this.stat.remark,
         };
@@ -108,6 +115,7 @@ export default {
                 score: this.score,
                 stairs: this.stairs,
                 exercises: this.exercises,
+                activities: this.activities,
                 muscleStrain: this.muscleStrain,
                 remark: this.remark,
             });
