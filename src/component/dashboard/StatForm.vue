@@ -9,6 +9,7 @@
                     disabled
                 />
             </FormField>
+
             <FormField id="form-field-score" label="Sore">
                 <RangeField
                     id="form-field-score"
@@ -18,6 +19,7 @@
                     v-model:value="score"
                 />
             </FormField>
+
             <FormField id="form-field-stairs" label="Stairs">
                 <RangeField
                     id="form-field-stairs"
@@ -27,6 +29,7 @@
                     v-model:value="stairs"
                 />
             </FormField>
+
             <FormField id="form-field-muscle-strain" label="Muscle strain">
                 <RangeField
                     id="form-field-muscle-strain"
@@ -36,11 +39,12 @@
                     v-model:value="muscleStrain"
                 />
             </FormField>
+
+            <ExerciseForm v-model:exercise="exercise" />
+
             <FormField id="form-field-remark" label="Remark">
                 <textarea id="form-field-remark" v-model="remark" />
             </FormField>
-
-            <ExerciseForm v-model:exercise="exercise" />
         </template>
 
         <template v-slot:actions>
