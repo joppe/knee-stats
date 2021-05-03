@@ -2,19 +2,11 @@
     <div class="exercise">
         <h2>Exercise</h2>
 
-        <em v-if="entries.length === 0">No exercises found</em>
+        <em v-if="entries.length === 0 && showForm === false"
+            >No exercises found</em
+        >
 
-        <ul class="exercise__list">
-            <li
-                v-for="(entry, index) in entries"
-                :key="index"
-                class="exercise__list-item"
-            >
-                {{ getTypeLabel(entry.type) }}: {{ entry.sets }} x
-                {{ entry.repetitions }} x {{ entry.weight }}kg
-                <button type="button" @click="remove(index)">x</button>
-            </li>
-        </ul>
+        <List :entries="exercises" @remove="handleRemove($event)" />
 
         <button
             type="button"
@@ -103,6 +95,7 @@
 <script>
 import Form from '../form/Form';
 import FormField from '../form/FormField';
+import List from '../list/List';
 
 export default {
     name: 'ExerciseForm',
@@ -115,6 +108,7 @@ export default {
     components: {
         Form,
         FormField,
+        List,
     },
     data() {
         return {
@@ -144,6 +138,15 @@ export default {
             ],
         };
     },
+    computed: {
+        exercises() {
+            return this.entries.map((entry) => {
+                return `${this.getTypeLabel(entry.type)}: ${entry.sets} x ${
+                    entry.repetitions
+                } x ${entry.weight}kg`;
+            });
+        },
+    },
     methods: {
         getTypeLabel(type) {
             return (
@@ -158,7 +161,7 @@ export default {
             this.weight = 0;
             this.type = 'squad';
         },
-        remove(index) {
+        handleRemove(index) {
             this.entries = [
                 ...this.entries.slice(0, index),
                 ...this.entries.slice(index + 1),
@@ -192,11 +195,6 @@ export default {
     margin-bottom: map-get($spacing, 'lg');
     padding: map-get($spacing, 'md');
     border: 1px solid $black;
-
-    &__list {
-        list-style: disc;
-        margin-left: 1em;
-    }
 
     &__form {
         &__input {
