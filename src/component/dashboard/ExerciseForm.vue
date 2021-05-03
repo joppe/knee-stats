@@ -6,7 +6,7 @@
             >No exercises found</em
         >
 
-        <List :entries="exercises" @remove="handleRemove($event)" />
+        <List :entries="listData" @remove="handleRemove($event)" />
 
         <button
             type="button"
@@ -99,9 +99,9 @@ import List from '../list/List';
 
 export default {
     name: 'ExerciseForm',
-    emits: ['update:exercise'],
+    emits: ['update:exercises'],
     props: {
-        exercise: {
+        exercises: {
             type: Array,
         },
     },
@@ -112,7 +112,7 @@ export default {
     },
     data() {
         return {
-            entries: this.exercise,
+            entries: this.exercises,
             showForm: false,
             sets: 0,
             repetitions: 0,
@@ -139,7 +139,7 @@ export default {
         };
     },
     computed: {
-        exercises() {
+        listData() {
             return this.entries.map((entry) => {
                 return `${this.getTypeLabel(entry.type)}: ${entry.sets} x ${
                     entry.repetitions
@@ -166,7 +166,7 @@ export default {
                 ...this.entries.slice(0, index),
                 ...this.entries.slice(index + 1),
             ];
-            this.$emit('update:exercise', this.entries);
+            this.$emit('update:exercises', this.entries);
         },
         add() {
             this.entries.push({
@@ -175,7 +175,7 @@ export default {
                 weight: this.weight,
                 type: this.type,
             });
-            this.$emit('update:exercise', this.entries);
+            this.$emit('update:exercises', this.entries);
             this.reset();
             this.showForm = false;
         },

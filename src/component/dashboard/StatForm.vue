@@ -40,7 +40,7 @@
                 />
             </FormField>
 
-            <ExerciseForm v-model:exercise="exercise" />
+            <ExerciseForm v-model:exercises="exercises" />
 
             <FormField id="form-field-remark" label="Remark">
                 <textarea id="form-field-remark" v-model="remark" />
@@ -90,7 +90,7 @@ export default {
             date: toString(date),
             score: this.stat.score,
             stairs: this.stat.stairs,
-            exercise: this.stat.exercise ? this.stat.exercise.slice() : [],
+            exercises: this.stat.exercises ? this.stat.exercises.slice() : [],
             muscleStrain: this.stat.muscleStrain,
             remark: this.stat.remark,
         };
@@ -107,7 +107,7 @@ export default {
                 },
                 score: this.score,
                 stairs: this.stairs,
-                exercise: this.exercise,
+                exercises: this.exercises,
                 muscleStrain: this.muscleStrain,
                 remark: this.remark,
             });
