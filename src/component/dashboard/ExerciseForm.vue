@@ -101,8 +101,8 @@
 </template>
 
 <script>
-import Form from './Form';
-import FormField from './FormField';
+import Form from '../form/Form';
+import FormField from '../form/FormField';
 
 export default {
     name: 'ExerciseForm',

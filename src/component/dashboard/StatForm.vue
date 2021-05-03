@@ -58,7 +58,7 @@
 import Form from '@/component/form/Form';
 import FormField from '@/component/form/FormField';
 import RangeField from '@/component/form/field/RangeField';
-import ExerciseForm from '@/component/form/ExerciseForm';
+import ExerciseForm from '@/component/dashboard/ExerciseForm';
 import { fromString } from '@/date/fromString';
 import { fromTimestamp } from '@/date/fromTimestamp';
 import { toString } from '@/date/toString';

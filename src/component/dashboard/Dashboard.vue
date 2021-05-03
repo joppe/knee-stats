@@ -39,7 +39,7 @@
 <script>
 import List from '@/component/list/List';
 import Modal from '@/component/modal/Modal';
-import StatForm from '@/component/form/StatForm';
+import StatForm from '@/component/dashboard/StatForm';
 import { addDays } from '@/date/addDays';
 import { createStat, updateStat, useStats } from '@/firebase/useStats';
 import { fromString } from '@/date/fromString';
