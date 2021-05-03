@@ -19,7 +19,7 @@
             </button>
         </div>
 
-        <List
+        <Table
             :fields="fields"
             :data="entries"
             :styler="styler"
@@ -37,7 +37,7 @@
 </template>
 
 <script>
-import List from '@/component/list/List';
+import Table from '@/component/table/Table';
 import Modal from '@/component/modal/Modal';
 import StatForm from '@/component/dashboard/StatForm';
 import { addDays } from '@/date/addDays';
@@ -60,9 +60,9 @@ export default {
         },
     },
     components: {
-        List,
         Modal,
         StatForm,
+        Table,
     },
     data() {
         const today = startOfDay(new Date());
