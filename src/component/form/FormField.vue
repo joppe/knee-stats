@@ -54,6 +54,11 @@ export default {
             font-size: map-get($font-size, 'sm');
             color: $grey--dark-gray;
         }
+
+        input,
+        select {
+            width: 100%;
+        }
     }
 }
 </style>

@@ -27,6 +27,14 @@ export default {
     &--inline {
         display: flex;
         padding: 0;
+
+        .form__actions * {
+            margin-top: auto;
+
+            &:first-child {
+                margin-right: map-get($spacing, 'sm');
+            }
+        }
     }
 
     &__actions {

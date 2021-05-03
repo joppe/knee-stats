@@ -19,11 +19,7 @@
         <Form is-inline v-if="showForm">
             <template v-slot:fields>
                 <FormField id="form-field-type" label="Type" is-inline>
-                    <select
-                        id="form-field-type"
-                        v-model="type"
-                        class="exercise__form__select"
-                    >
+                    <select id="form-field-type" v-model="type">
                         <option
                             v-for="t in types"
                             :key="t.name"
@@ -38,7 +34,6 @@
                         id="form-field-sets"
                         type="number"
                         v-model.number="sets"
-                        class="exercise__form__input"
                         @focus="handleFocus($event)"
                     />
                 </FormField>
@@ -52,7 +47,6 @@
                         id="form-field-repetitions"
                         type="number"
                         v-model.number="repetitions"
-                        class="exercise__form__input"
                         @focus="handleFocus($event)"
                     />
                 </FormField>
@@ -66,27 +60,14 @@
                         id="form-field-weight"
                         type="number"
                         v-model.number="weight"
-                        class="exercise__form__input"
                         @focus="handleFocus($event)"
                     />
                 </FormField>
             </template>
 
             <template v-slot:actions>
-                <button
-                    type="button"
-                    @click="add()"
-                    class="exercise__form__button"
-                >
-                    add
-                </button>
-                <button
-                    type="button"
-                    @click="cancel()"
-                    class="exercise__form__button"
-                >
-                    cancel
-                </button>
+                <button type="button" @click="add()">add</button>
+                <button type="button" @click="cancel()">cancel</button>
             </template>
         </Form>
     </div>
@@ -189,25 +170,3 @@ export default {
     },
 };
 </script>
-
-<style lang="scss">
-.exercise {
-    &__form {
-        &__input {
-            width: 100%;
-        }
-
-        &__select {
-            width: 100%;
-        }
-
-        &__button {
-            margin-top: auto;
-
-            &:first-of-type {
-                margin-right: map-get($spacing, 'sm');
-            }
-        }
-    }
-}
-</style>
