@@ -1,5 +1,5 @@
 <template>
-    <div class="activity">
+    <div class="o-block">
         <h2>Activity</h2>
 
         <em v-if="entries.length === 0 && showForm === false"
@@ -184,10 +184,6 @@ export default {
 
 <style lang="scss">
 .activity {
-    margin-bottom: map-get($spacing, 'lg');
-    padding: map-get($spacing, 'md');
-    border: 1px solid $black;
-
     &__form {
         &__input {
             width: 100%;
