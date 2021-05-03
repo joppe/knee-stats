@@ -14,6 +14,7 @@ function emptyStat(timestamp) {
             nanoseconds: 0,
         },
         exercises: [],
+        activities: [],
         muscleStrain: 0,
         remark: '',
         score: 0,

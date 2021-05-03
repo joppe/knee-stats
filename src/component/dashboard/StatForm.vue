@@ -1,15 +1,16 @@
 <template>
     <Form class="stat-form">
         <template v-slot:fields>
-            <FormRow id="form-field-date" label="Date">
+            <FormField id="form-field-date" label="Date">
                 <input
                     type="date"
                     id="form-field-date"
                     v-model="date"
                     disabled
                 />
-            </FormRow>
-            <FormRow id="form-field-score" label="Sore">
+            </FormField>
+
+            <FormField id="form-field-score" label="Sore">
                 <RangeField
                     id="form-field-score"
                     :min="0"
@@ -17,8 +18,9 @@
                     :step="1"
                     v-model:value="score"
                 />
-            </FormRow>
-            <FormRow id="form-field-stairs" label="Stairs">
+            </FormField>
+
+            <FormField id="form-field-stairs" label="Stairs">
                 <RangeField
                     id="form-field-stairs"
                     :min="0"
@@ -26,8 +28,9 @@
                     :step="1"
                     v-model:value="stairs"
                 />
-            </FormRow>
-            <FormRow id="form-field-muscle-strain" label="Muscle strain">
+            </FormField>
+
+            <FormField id="form-field-muscle-strain" label="Muscle strain">
                 <RangeField
                     id="form-field-muscle-strain"
                     :min="0"
@@ -35,12 +38,15 @@
                     :step="1"
                     v-model:value="muscleStrain"
                 />
-            </FormRow>
-            <FormRow id="form-field-remark" label="Remark">
-                <textarea id="form-field-remark" v-model="remark" />
-            </FormRow>
+            </FormField>
 
-            <ExerciseForm v-model:exercise="exercise" />
+            <ActivityForm v-model:activities="activities" />
+
+            <ExerciseForm v-model:exercises="exercises" />
+
+            <FormField id="form-field-remark" label="Remark">
+                <textarea id="form-field-remark" v-model="remark" />
+            </FormField>
         </template>
 
         <template v-slot:actions>
@@ -56,9 +62,10 @@
 
 <script>
 import Form from '@/component/form/Form';
-import FormRow from '@/component/form/FormRow';
+import FormField from '@/component/form/FormField';
 import RangeField from '@/component/form/field/RangeField';
-import ExerciseForm from '@/component/form/ExerciseForm';
+import ActivityForm from '@/component/dashboard/ActivityForm';
+import ExerciseForm from '@/component/dashboard/ExerciseForm';
 import { fromString } from '@/date/fromString';
 import { fromTimestamp } from '@/date/fromTimestamp';
 import { toString } from '@/date/toString';
@@ -74,9 +81,10 @@ export default {
         },
     },
     components: {
+        ActivityForm,
         ExerciseForm,
         Form,
-        FormRow,
+        FormField,
         RangeField,
     },
     data() {
@@ -86,7 +94,10 @@ export default {
             date: toString(date),
             score: this.stat.score,
             stairs: this.stat.stairs,
-            exercise: this.stat.exercise ? this.stat.exercise.slice() : [],
+            exercises: this.stat.exercises ? this.stat.exercises.slice() : [],
+            activities: this.stat.activities
+                ? this.stat.activities.slice()
+                : [],
             muscleStrain: this.stat.muscleStrain,
             remark: this.stat.remark,
         };
@@ -103,7 +114,8 @@ export default {
                 },
                 score: this.score,
                 stairs: this.stairs,
-                exercise: this.exercise,
+                exercises: this.exercises,
+                activities: this.activities,
                 muscleStrain: this.muscleStrain,
                 remark: this.remark,
             });

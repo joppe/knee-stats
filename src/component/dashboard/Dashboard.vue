@@ -19,7 +19,7 @@
             </button>
         </div>
 
-        <List
+        <Table
             :fields="fields"
             :data="entries"
             :styler="styler"
@@ -37,16 +37,16 @@
 </template>
 
 <script>
-import List from '@/component/list/List';
+import Table from '@/component/table/Table';
 import Modal from '@/component/modal/Modal';
-import StatForm from '@/component/form/StatForm';
+import StatForm from '@/component/dashboard/StatForm';
 import { addDays } from '@/date/addDays';
 import { createStat, updateStat, useStats } from '@/firebase/useStats';
 import { fromString } from '@/date/fromString';
 import { fromTimestamp } from '@/date/fromTimestamp';
 import { startOfDay } from '@/date/startOfDay';
 import { toRefs } from 'vue';
-import { toString } from '@/date/toString';
+import { NATURAL, toString } from '@/date/toString';
 import { toTimestamp } from '@/date/toTimestamp';
 import { useDayInterval } from '@/composition/useDayInterval';
 import { useEntries } from '@/composition/useEntries';
@@ -60,15 +60,16 @@ export default {
         },
     },
     components: {
-        List,
         Modal,
         StatForm,
+        Table,
     },
     data() {
         const today = startOfDay(new Date());
         const tomorrow = addDays(today, 1);
 
         return {
+            today: toTimestamp(today),
             tomorrow: toTimestamp(tomorrow),
             selected: null,
             fields: [
@@ -76,7 +77,7 @@ export default {
                     prop: 'date',
                     label: 'Date',
                     mapper(date) {
-                        return toString(fromTimestamp(date.seconds));
+                        return toString(fromTimestamp(date.seconds), NATURAL);
                     },
                 },
                 { prop: 'score', label: 'Score' },
@@ -126,7 +127,21 @@ export default {
             this.selected = null;
         },
         styler(entry) {
-            return entry.id ? 'with-id' : 'no-id';
+            const classes = [];
+
+            if (entry.id) {
+                classes.push('with-id');
+            } else {
+                classes.push('no-id');
+            }
+
+            if (entry.date.seconds === this.today) {
+                classes.push('current');
+            } else if (entry.date.seconds > this.today) {
+                classes.push('disabled');
+            }
+
+            return classes.join('  ');
         },
     },
 };
